@@ -63,6 +63,15 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('nik_maba')->references('nik')->on('calon_maba');
         });
+
+        Schema::create('calonmaba_jurusan', function (Blueprint $table) {
+            $table->char('nik_maba', 16);
+            $table->char('kode_jurusan', 8);
+            $table->char('pilihan_ke', 1);
+            $table->timestamps();
+            $table->foreign('nik_maba')->references('nik')->on('calon_maba');
+            $table->foreign('kode_jurusan')->references('kode_jurusan')->on('jurusan');
+        });
     }
 
     /**
@@ -75,5 +84,6 @@ return new class extends Migration
         Schema::dropIfExists('calon_maba');
         Schema::dropIfExists('file_maba');
         Schema::dropIfExists('riwayat_pend_maba');
+        Schema::dropIfExists('calonmaba_jurusan');
     }
 };

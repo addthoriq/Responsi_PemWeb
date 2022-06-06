@@ -15,22 +15,22 @@ return new class extends Migration
     {
         Schema::create('calon_maba', function (Blueprint $table) {
             $table->char('nik', 16)->primary();
-            $table->char('nis', 10)->unique();
-            $table->char('kode_agama', 3);
-            $table->char('nik_ayah', 16);
-            $table->char('nik_ibu', 16);
+            $table->char('nis', 10)->unique()->nullable();
+            $table->char('kode_agama', 3)->nullable();
+            $table->char('nik_ayah', 16)->nullable();
+            $table->char('nik_ibu', 16)->nullable();
             $table->string('nama_maba', 50);
             $table->char('jenis_kelamin', 2);
             $table->string('email', 30)->unique();
             $table->string('password');
             $table->string('photo')->nullable();
-            $table->string('nomor_hp', 13);
-            $table->string('alamat', 50);
-            $table->char('kode_pos', 5);
+            $table->string('nomor_hp', 13)->nullable();
+            $table->string('alamat', 50)->nullable();
+            $table->char('kode_pos', 5)->nullable();
             $table->char('kode_kecamatan', 7)->nullable();
             $table->char('kode_kabupaten', 4)->nullable();
             $table->char('kode_provinsi', 2)->nullable();
-            $table->char('anak_ke'. 2);
+            $table->char('anak_ke'. 2)->nullable();
             $table->char('jum_saudara_kandung', 2)->nullable();
             $table->char('jum_saudara_tiri', 2)->nullable();
             $table->char('jum_saudara_angkat', 2)->nullable();

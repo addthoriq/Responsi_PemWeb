@@ -19,4 +19,9 @@ class Jurusan extends Model
     {
         return $this->belongsTo(Fakultas::class);
     }
+
+    public function calonMaba()
+    {
+        return $this->belongsToMany(CalonMaba::class, 'calonmaba_jurusan')->withPivot('pilihan_ke');
+    }
 }

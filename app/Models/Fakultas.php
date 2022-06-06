@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Fakultas extends Model
 {
     use HasFactory;
+    protected $table = 'fakultas';
+    public $incrementing = false;
+    protected $primaryKey = 'kode_fakultas';
+    protected $keyType = 'char';
+
+    protected $guarded = [];
+
+    public function jurusan()
+    {
+        return $this->hasMany(Jurusan::class);
+    }
 }

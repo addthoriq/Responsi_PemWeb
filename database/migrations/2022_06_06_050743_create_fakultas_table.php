@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
         
-        Schema::create('jurusans', function (Blueprint $table) {
+        Schema::create('jurusan', function (Blueprint $table) {
             $table->char('kode_jurusan', 8)->primary();
             $table->char('kode_fakultas', 5);
             $table->string('nama_jurusan', 30);
@@ -36,6 +36,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('fakultas');
-        Schema::dropIfExists('jurusans');
+        Schema::dropIfExists('jurusan');
     }
 };

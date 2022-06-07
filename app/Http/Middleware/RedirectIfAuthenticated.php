@@ -22,8 +22,14 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
+            if ($guard == "user" && Auth::guard($guard)->check()){
+                return redirect('/admin/');
+            }
+            if ($guard == "maba" && Auth::guard($guard)->check()){
+                return redirect('/beranda');
+            }
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect('/');
             }
         }
 

@@ -11,7 +11,7 @@
             <div class="modal-body">Anda ingin keluar?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                {{-- <a class="btn btn-primary" href="{{ url('/logout') }}">Keluar</a> --}}
+                <a class="btn btn-primary" href="{{ url('/mabalogout') }}">Keluar</a>
             </div>
         </div>
     </div>

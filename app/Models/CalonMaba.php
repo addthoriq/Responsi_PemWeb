@@ -3,17 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class CalonMaba extends Model
+class CalonMaba extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
     protected $table = 'calon_maba';
     public $incrementing = false;
     protected $primaryKey = 'nik';
     protected $keyType = 'char';
 
     protected $guarded = [];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     public function agama()
     {

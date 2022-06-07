@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nama_maba', 50);
             $table->char('jenis_kelamin', 2);
             $table->string('email', 30)->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('nomor_hp', 13)->nullable();

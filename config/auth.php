@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'maba' => [
+            'driver' => 'session',
+            'provider' => 'maba'
+        ]
     ],
 
     /*
@@ -63,6 +67,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'maba' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CalonMaba::class,
         ],
 
         // 'users' => [
@@ -89,6 +98,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'maba' => [
+            'provider' => 'maba',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\AuthMaba;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +27,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $guard = 'maba';
+    protected $redirectTo = '/beranda';
 
     /**
      * Create a new controller instance.
@@ -36,17 +37,22 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:maba')->except('logout');
+    }
+
+    public function guard()
+    {
+        return Auth::guard('maba');
     }
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('maba')->logout();
         return redirect('/');
     }
 
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('welcome');
     }
 }

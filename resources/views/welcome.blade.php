@@ -17,7 +17,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Selamat Datang di Portal Penerimaan Mahasiswa Baru IST AKPRIND Yogyakarta</h1>
                             </div>
-                            <form method="POST" action="{{ route('login') }}" class="user">
+                            <form method="POST" action="{{ route('maba-login') }}" class="user">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan Email anda ..." name="email">

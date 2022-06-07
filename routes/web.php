@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('login');
+})->name('masuk');
 
 Route::get('/daftar', function(){
     return view('daftar');
 })->name('daftar');
 
-// Auth::routes();
+Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/beranda', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -42,7 +42,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="{{ route('login') }}">Udah punya akun? Masuk!</a>
+                        <a class="small" href="{{ route('masuk') }}">Udah punya akun? Masuk!</a>
                     </div>
                 </div>
             </div>

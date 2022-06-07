@@ -17,14 +17,13 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Selamat Datang di Portal Penerimaan Mahasiswa Baru IST AKPRIND Yogyakarta</h1>
                             </div>
-                            <form class="user">
+                            <form method="POST" action="{{ route('login') }}" class="user">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        aria-describedby="emailHelp" placeholder="Masukkan Email anda ...">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan Email anda ..." name="email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Masukkan Password anda ...">
+                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukkan Password anda ..." name="password">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
@@ -32,9 +31,7 @@
                                         <label class="custom-control-label" for="customCheck">Ingat aku</label>
                                     </div>
                                 </div>
-                                <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                    Masuk
-                                </a>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Masuk</button>
                             </form>
                             <hr>
                             <div class="text-center">

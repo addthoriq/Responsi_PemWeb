@@ -60,8 +60,8 @@ class CalonMaba extends Model
         return $this->belongsTo(Kecamatan::class);
     }
 
-    public function jurusan()
+    public function programCalonmaba()
     {
-        return $this->belongsToMany(Jurusan::class, 'calonmaba_jurusan')->withPivot('pilihan_ke');
+        return $this->hasMany(ProgramCalonmaba::class);
     }
 }

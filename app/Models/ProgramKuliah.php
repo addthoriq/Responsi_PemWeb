@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jurusan extends Model
+class ProgramKuliah extends Model
 {
     use HasFactory;
-    protected $table = 'ayah';
+    protected $table = 'program_kuliah';
     public $incrementing = false;
-    protected $primaryKey = 'nik';
+    protected $primaryKey = 'kode_program';
     protected $keyType = 'char';
 
     protected $guarded = [];
-
-    public function fakultas()
-    {
-        return $this->belongsTo(Fakultas::class);
-    }
-
+    
     public function programCalonmaba()
     {
-        return $this->belongsToMany(ProgramCalonmaba::class, 'calonmaba_jurusan')->withPivot('pilihan_ke');
+        return $this->hasMany(ProgramCalonmaba::class);
     }
 }

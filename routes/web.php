@@ -16,12 +16,22 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('masuk');
+})->name('masuk')->middleware('guest');
 
 Route::get('/daftar', function(){
     return view('daftar');
 })->name('daftar');
 
 Auth::routes();
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+
+// Memblokir akses ke /login (Admin)
+Route::match(["GET"], "/login", function () {
+    return redirect("/");
+})->name("login");
+// Memblokir akses ke /register (Admin)
+Route::match(["GET", "POST"], "/register", function () {
+    return redirect("/");
+})->name("register");
 
 Route::get('/beranda', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

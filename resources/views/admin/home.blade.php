@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('admin.layouts.app')
 @section('title', 'Beranda')
 @section('konten')
 <!-- Page Heading -->

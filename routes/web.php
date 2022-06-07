@@ -44,7 +44,7 @@ Route::match(["GET", "POST"], "/register", function () {
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 });
-Route::get('/admin-login', [LoginController::class, 'showLoginForm'])->middleware('guest:maba')->name('admin.login');
+Route::get('/admin-login', [LoginController::class, 'showLoginForm'])->middleware('guest:maba[')->name('admin.login');
 
 // Maba Area
 Route::middleware('guest')->group(function (){

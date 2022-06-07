@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('kewarganegaraan', 30);
             $table->string('file_ktp_ayah', 200)->nullable();
             $table->char('kode_penghasilan', 5);
+            $table->bigInteger('nominal');
             $table->timestamps();
 
             $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');
@@ -51,6 +52,7 @@ return new class extends Migration
             $table->string('kewarganegaraan', 30);
             $table->string('file_ktp_ibu', 200)->nullable();
             $table->char('kode_penghasilan', 5);
+            $table->bigInteger('nominal');
             $table->timestamps();
 
             $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');

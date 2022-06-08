@@ -1,6 +1,7 @@
 @extends('maba.layouts.app')
 @section('title', 'Informasi Data Ibu')
 @section('def_css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
 <style>
@@ -12,7 +13,7 @@
 @section('konten')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Informasi Data Ibu</h1>
+    <h1 class="h3 mb-0 text-gray-800">Informasi Data Keluarga</h1>
 </div>
 
 {{-- Data Pribadi Ibu --}}
@@ -28,12 +29,13 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="nik">Nomor Induk Kewarganegaraan (NIK)</label>
-                        <input type="text" class="form-control form-control-user" id="nik" value="{{($data_maba->ibu->nik)??''}}">
+                        <input type="text" class="form-control form-control-user" id="nik"
+                            value="{{($data_maba->ibu->nik)??''}}">
                     </div>
                     <div class="form-group">
-                        <label for="nama_ibu">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-user" id="nama_ibu"
-                            value="{{($data_maba->ibu->nama_ibu)??''}}">
+                        <label for="nama_Ibu">Nama Lengkap</label>
+                        <input type="text" class="form-control form-control-user" id="nama_Ibu"
+                            value="{{($data_maba->ibu->nama_Ibu)??''}}">
                     </div>
                     {{-- Agama --}}
                     <div class="form-group">
@@ -50,7 +52,7 @@
                     <div class="form-group">
                         <label for="kewarganegaraan">Kewarganegaraan</label>
                         <input type="text" class="form-control form-control-user" id="kewarganegaraan"
-                        value="{{($data_maba->ibu->kewarganegaraan)??''}}">
+                            value="{{($data_maba->ibu->kewarganegaraan)??''}}">
                     </div>
                     <div class="form-group">
                         <label for="agama">Status Hubungan</label>
@@ -126,8 +128,6 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
-                            {{-- <option value="{{$data_maba->ibu->provinsi->kode_provinsi??''}}" selected>
-                                {{$data_maba->ibu->provinsi->nama_provinsi??''}}</option> --}}
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
                             @endforeach
@@ -136,11 +136,7 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            {{-- <option value="{{$data_maba->ibu->kabupaten->kode_kabupaten??''}}" selected>
-                                {{$data_maba->ibu->kabupaten->nama_kabupaten??''}}</option> --}}
-                            @foreach ($kabupaten as $kab)
-                            <option value="{{$kab->kode_kabupaten}}">{{$kab->nama_kabupaten}}</option>
-                            @endforeach
+                            <option value="" selected>---Pilih Kabupaten---</option>
                         </select>
                     </div>
                 </div>
@@ -148,11 +144,7 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            {{-- <option value="{{$data_maba->ibu->kecamatan->kode_kecamatan??''}}" selected>
-                                {{$data_maba->ibu->kecamatan->nama_kecamatan??''}}</option> --}}
-                            @foreach ($kecamatan as $kec)
-                            <option value="{{$kec->kode_kecamatan}}">{{$kec->nama_kecamatan}}</option>
-                            @endforeach
+                            <option value="" selected>---Pilih Kecamatan---</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -219,7 +211,8 @@
                     </div>
                     <div class="form-group">
                         <label for="nik">Nominal Gaji Ibu</label>
-                        <input type="number" class="form-control form-control-user" id="nik" value="{{($data_maba->ibu->nominal)??''}}">
+                        <input type="number" class="form-control form-control-user" id="nik"
+                            value="{{($data_maba->ibu->nominal)??''}}">
                     </div>
                 </div>
             </div>
@@ -247,30 +240,32 @@
     });
 </script>
 <script>
-    //ajax for data sekolah
-    /*
     $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$(document).on('change', '#provinsi', function () {
+    $('#kabupaten').html('<option value="0">-- Silahkan dipilih --</option>');
+    var provinsi_selected = $(this).val();
+    $.ajax({
+        url: "/kabupaten",
+        method: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            provinsi: provinsi_selected
+        },
+        success: function(response){
+            $('#kabupaten').html(response);
         }
     });
-    $(document).on('change', '.provinsi2', function () {
-        $('#kecamatan').html('<option value="0">- Please Select -</option>');
-        $.post( '', {
-            provinsi_id: $(this).val()
-        }).done(function( data ) {
-            $('#kabupaten').html(data);
-        }).fail(function(data){
-            console.log(data);
-        });
+});
+$(document).on('change', '#kabupaten', function () {
+    $.post( '{{ route('wilayah.kecamatan') }}', {
+        kabupaten: $(this).val()
+    }).done(function( data ) {
+        $('#kecamatan').html(data);
     });
-    $(document).on('change', '#kabupaten', function () {
-        $.post( '', {
-            kabupaten_id: $(this).val()
-        }).done(function( data ) {
-            $('#kecamatan').html(data);
-        });
-    });
-    */
+});
 </script>
 @endsection

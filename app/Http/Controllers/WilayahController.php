@@ -15,26 +15,26 @@ class WilayahController extends Controller
     public function getKabupaten(Request $request)
     {
         $data = Kabupaten::where('kode_provinsi', '=', $request->provinsi)->get();
-        $html[] = '<option value="0">- Please Select -</option>';
+        $html[] = '<option value="0">--- Silahkan dipilih ---</option>';
         foreach ($data as $key => $value) {
             $html[] = '<option value="' . $value->kode_kabupaten . '">' . $value->nama_kabupaten . '</option>';
         }
         if (count($html) > 0) {
             return $html;
         }
-        return '<option value="0">- Data Empty -</option>';
+        return '<option value="0">--- Data Kosong ---</option>';
     }
     public function getKecamatan(Request $request)
     {
         $data = Kecamatan::where('kode_kabupaten', $request->kabupaten)->get();
-        $html[] = '<option value="0">- Please Select -</option>';
+        $html[] = '<option value="0">--- Silahkan dipilih ---</option>';
         foreach ($data as $key => $value) {
             $html[] = '<option value="' . $value->kode_kecamatan . '">' . $value->nama_kecamatan . '</option>';
         }
         if (count($html) > 0) {
             return $html;
         }
-        return '<option value="0">- Data Empty -</option>';
+        return '<option value="0">--- Data Kosong ---</option>';
     }
 
     public function getAllKabupaten(Request $request)
@@ -47,6 +47,6 @@ class WilayahController extends Controller
         if (count($html) > 0) {
             return $html;
         }
-        return '<option value="">- Data Empty -</option>';
+        return '<option value="">--- Data Kosong ---</option>';
     }
 }

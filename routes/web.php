@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthMaba\LoginController as MabaLoginController;
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InformasiDataPribadiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,9 +45,8 @@ Route::match(["GET", "POST"], "/register", function () {
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 });
-Route::get('/admin-login', [LoginController::class, 'showLoginForm'])->middleware('guest:maba[')->name('admin.login');
+Route::get('/admin-login', [LoginController::class, 'showLoginForm'])->middleware('guest:maba')->name('admin.login');
 
 // Maba Area
-Route::middleware('guest')->group(function (){
-});
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
+Route::get('/informasi-pribadi', [InformasiDataPribadiController::class, 'index'])->name('informasi-pribadi');

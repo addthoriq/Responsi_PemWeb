@@ -25,8 +25,8 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item {{Request::is('informasi-pribadi')?'active':''}}">
+        <a class="nav-link" href="{{ route('informasi-pribadi') }}">
             <i class="fas fa-address-card"></i>
             <span>Informasi Data Pribadi</span>
         </a>

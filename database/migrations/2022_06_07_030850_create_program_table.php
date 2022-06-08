@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('program_kuliah', function (Blueprint $table) {
             $table->char('kode_program',5)->primary();
             $table->string('nama_program');
-            $table->string('deskripsi_program');
+            $table->text('deskripsi_program');
+            $table->text('persyaratan');
             $table->timestamps();
         });
 

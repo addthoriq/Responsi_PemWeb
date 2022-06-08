@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
         // NativeDataSeeder::class;
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $this->call(NativeDataSeeder::class);
+        $this->call(FakJurSeeder::class);
+        $this->call(ProvinsiSeeder::class);
+        $this->call(KabupatenSeeder::class);
+        $this->call(KecamatanSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         // \App\Models\User::factory()->create([

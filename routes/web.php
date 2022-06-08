@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthMaba\LoginController as MabaLoginController;
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AyahController;
+use App\Http\Controllers\IbuController;
 use App\Http\Controllers\InformasiDataPribadiController;
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +52,5 @@ Route::get('/admin-login', [LoginController::class, 'showLoginForm'])->middlewar
 // Maba Area
 Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/informasi-pribadi', [InformasiDataPribadiController::class, 'index'])->name('informasi-pribadi');
+Route::get('/informasi-ayah', [AyahController::class, 'index'])->name('informasi-ayah');
+Route::get('/informasi-ibu', [IbuController::class, 'index'])->name('informasi-ibu');

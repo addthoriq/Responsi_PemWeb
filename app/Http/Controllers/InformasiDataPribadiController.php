@@ -28,25 +28,8 @@ class InformasiDataPribadiController extends Controller
         $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik)->first();
         return view($this->dir_view.'beranda', compact('agama', 'data_maba', 'provinsi', 'kecamatan', 'kabupaten'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  char  $kode
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $kode)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

@@ -33,11 +33,18 @@
     </li>
     
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-users"></i>
-            <span>Informasi Data Keluarga</span>
+    <li class="nav-item {{Request::is('informasi-ayah')||Request::is('informasi-ibu')?'active':''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Data Orang Tua</span>
         </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{Request::is('informasi-ayah')?'active':''}}" href="{{route('informasi-ayah')}}">Data Ayah</a>
+                <a class="collapse-item {{Request::is('informasi-ibu')?'active':''}}" href="{{route('informasi-ibu')}}">Data Ibu</a>
+            </div>
+        </div>
     </li>
     
 

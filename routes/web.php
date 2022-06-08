@@ -8,7 +8,8 @@ use App\Http\Controllers\AuthMaba\LoginController as MabaLoginController;
 // Admin Controller
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
-use App\Http\Controllers\{HomeController, AyahController, IbuController, InformasiDataPribadiController, WilayahController};
+use App\Http\Controllers\{HomeController, AyahController, IbuController, InformasiDataPribadiController, WilayahController, RiwayatPendidikanController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,3 +58,4 @@ Route::get('/beranda', [HomeController::class, 'index'])->name('home');
 Route::get('/informasi-pribadi', [InformasiDataPribadiController::class, 'index'])->name('informasi-pribadi');
 Route::get('/informasi-ayah', [AyahController::class, 'index'])->name('informasi-ayah');
 Route::get('/informasi-ibu', [IbuController::class, 'index'])->name('informasi-ibu');
+Route::get('/asal-sekolah', [RiwayatPendidikanController::class, 'index'])->name('asal-sekolah');

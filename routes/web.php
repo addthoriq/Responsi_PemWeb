@@ -8,10 +8,7 @@ use App\Http\Controllers\AuthMaba\LoginController as MabaLoginController;
 // Admin Controller
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AyahController;
-use App\Http\Controllers\IbuController;
-use App\Http\Controllers\InformasiDataPribadiController;
+use App\Http\Controllers\{HomeController, AyahController, IbuController, InformasiDataPribadiController, WilayahController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +25,12 @@ Route::get('/', [MabaLoginController::class, 'showLoginForm'])->name('masuk');
 Route::get('/daftar', function(){
     return view('daftar');
 })->name('daftar')->middleware('auth');
+
+// plugin alamat
+Route::post('/kabupatenAll', [WilayahController::class, 'getAllKabupaten'])->name('wilayah.kabupaten.all');
+Route::post('/kabupaten', [WilayahController::class, 'getKabupaten'])->name('wilayah.kabupaten');
+Route::post('/kecamatan', [WilayahController::class, 'getKecamatan'])->name('wilayah.kecamatan');
+Route::get('/provinsi', [WilayahController::class, 'getProvinsi'])->name('wilayah.provinsi');
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout']);

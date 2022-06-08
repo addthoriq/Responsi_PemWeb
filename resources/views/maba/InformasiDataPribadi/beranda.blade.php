@@ -1,6 +1,7 @@
 @extends('maba.layouts.app')
 @section('title', 'Informasi Data Pribadi')
 @section('def_css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
 <style>
@@ -152,11 +153,7 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            {{-- <option value="{{$data_maba->kabupaten->kode_kabupaten??''}}" selected>
-                                {{$data_maba->kabupaten->nama_kabupaten??''}}</option> --}}
-                            @foreach ($kabupaten as $kab)
-                            <option value="{{$kab->kode_kabupaten}}">{{$kab->nama_kabupaten}}</option>
-                            @endforeach
+                            <option value="" selected>---Pilih Kabupaten---</option>
                         </select>
                     </div>
                 </div>
@@ -164,11 +161,7 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            {{-- <option value="{{$data_maba->kecamatan->kode_kecamatan??''}}" selected>
-                                {{$data_maba->kecamatan->nama_kecamatan??''}}</option> --}}
-                            @foreach ($kecamatan as $kec)
-                            <option value="{{$kec->kode_kecamatan}}">{{$kec->nama_kecamatan}}</option>
-                            @endforeach
+                            <option value="" selected>---Pilih Kecamatan---</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -201,30 +194,32 @@
     });
 </script>
 <script>
-    //ajax for data sekolah
-    /*
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$(document).on('change', '#provinsi', function () {
+    $('#kabupaten').html('<option value="0">- Please Select -</option>');
+    var provinsi_selected = $(this).val();
+    $.ajax({
+        url: "/kabupaten",
+        method: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            provinsi: provinsi_selected
+        },
+        success: function(response){
+            $('#kabupaten').html(response);
         }
     });
-    $(document).on('change', '.provinsi2', function () {
-        $('#kecamatan').html('<option value="0">- Please Select -</option>');
-        $.post( '', {
-            provinsi_id: $(this).val()
-        }).done(function( data ) {
-            $('#kabupaten').html(data);
-        }).fail(function(data){
-            console.log(data);
-        });
+});
+$(document).on('change', '#kabupaten', function () {
+    $.post( '{{ route('wilayah.kecamatan') }}', {
+        kabupaten: $(this).val()
+    }).done(function( data ) {
+        $('#kecamatan').html(data);
     });
-    $(document).on('change', '#kabupaten', function () {
-        $.post( '', {
-            kabupaten_id: $(this).val()
-        }).done(function( data ) {
-            $('#kecamatan').html(data);
-        });
-    });
-    */
+});
 </script>
 @endsection

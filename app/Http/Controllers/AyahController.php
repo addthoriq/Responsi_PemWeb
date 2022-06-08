@@ -36,4 +36,9 @@ class AyahController extends Controller
         $data['hubungan'] = StatusHubungan::get();
         return view($this->dir_view.'ayah', $data);
     }
+
+    public function update(Request $request, $kode)
+    {
+        //
+    }
 }

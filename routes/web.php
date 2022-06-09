@@ -68,3 +68,4 @@ Route::put('/informasi-pribadi/data-alamat', [InformasiDataPribadiController::cl
 
 Route::put('/informasi-ayah/data-pribadi', [AyahController::class, 'kontakPribadi'])->name('put.kontak-ayah');
 Route::put('/infomrasi-ayah/data-alamat', [AyahController::class, 'alamatPribadi'])->name('put.alamat-ayah');
+Route::put('/informasi-ayah/data-pendidikan', [AyahController::class, 'pendidikanTerakhir'])->name('put.pendidikan-ayah');

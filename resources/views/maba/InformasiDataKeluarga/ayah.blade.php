@@ -40,8 +40,9 @@
                     <div class="form-group">
                         <label for="agama">Agama</label>
                         <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ayah->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ayah->agama->nama_agama??''}}</option> --}}
+                            <option value="{{ $data_maba->ayah->kode_agama??'' }}" selected>
+                                {{ $data_maba->ayah->kode_agama ? $data_maba->ayah->agama->nama_agama : "---Pilih Provinsi---" }}
+                            </option>
                             @foreach ($agama as $ag)
                             <option value="{{$ag->kode_agama}}">{{$ag->nama_agama}}</option>
                             @endforeach
@@ -179,26 +180,28 @@
         <h6 class="m-0 font-weight-bold text-primary">Pekerjaan dan Riwayat Pendidikan Ayah</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{route('put.pendidikan-ayah')}}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="agama">Pendidikan Terakhir</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ayah->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ayah->agama->nama_agama??''}}</option> --}}
+                        <label for="pendidikan">Pendidikan Terakhir</label>
+                        <select name="pendidikan" id="pendidikan" class="form-control">
+                            <option value="{{ $data_maba->ayah->kode_pendidikan??'' }}" selected>
+                                {{ $data_maba->ayah->kode_pendidikan ? $data_maba->ayah->pendidikanTerakhir->nama_pendidikan : "---Pendidikan Terkahir---" }}
+                            </option>
                             @foreach ($pendidikan as $pdd)
                             <option value="{{$pdd->kode_pendidikan}}">{{$pdd->nama_pendidikan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="agama">Pekerjaan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ayah->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ayah->agama->nama_agama??''}}</option> --}}
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <select name="pekerjaan" id="pekerjaan" class="form-control">
+                            <option value="{{ $data_maba->ayah->kode_pekerjaan??'' }}" selected>
+                                {{ $data_maba->ayah->kode_pekerjaan ? $data_maba->ayah->pekerjaan->nama_pekerjaan : "---Pilih Pekerjaan---" }}
+                            </option>
                             @foreach ($pekerjaan as $pkj)
                             <option value="{{$pkj->kode_pekerjaan}}">{{$pkj->nama_pekerjaan}}</option>
                             @endforeach
@@ -207,18 +210,19 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="agama">Jumlah Penghasilan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ayah->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ayah->agama->nama_agama??''}}</option> --}}
+                        <label for="penghasilan">Jumlah Penghasilan</label>
+                        <select name="penghasilan" id="penghasilan" class="form-control">
+                            <option value="{{ $data_maba->ayah->kode_penghasilan??'' }}" selected>
+                                {{ $data_maba->ayah->kode_penghasilan ? $data_maba->ayah->jumlahPenghasilan->keterangan_penghasilan : "--- Jumlah Penghasilan ---" }}
+                            </option>
                             @foreach ($penghasilan as $phsl)
                             <option value="{{$phsl->kode_penghasilan}}">{{$phsl->keterangan_penghasilan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nik">Nominal Gaji Ayah</label>
-                        <input type="number" class="form-control form-control-user" id="nik" value="{{($data_maba->ayah->nominal)??''}}">
+                        <label for="nominal">Nominal Gaji Ayah</label>
+                        <input type="number" name="nominal" class="form-control form-control-user" id="nominal" value="{{($data_maba->ayah->nominal)??''}}">
                     </div>
                 </div>
             </div>

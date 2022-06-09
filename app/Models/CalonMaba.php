@@ -27,7 +27,7 @@ class CalonMaba extends Authenticatable
 
     public function agama()
     {
-        return $this->belongsTo(Agama::class);
+        return $this->belongsTo(Agama::class, 'kode_agama');
     }
 
     public function fileMaba()

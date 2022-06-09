@@ -62,3 +62,6 @@ Route::get('/informasi-ayah', [AyahController::class, 'index'])->name('informasi
 Route::get('/informasi-ibu', [IbuController::class, 'index'])->name('informasi-ibu');
 Route::get('/asal-sekolah', [RiwayatPendidikanController::class, 'index'])->name('asal-sekolah');
 Route::get('/unggah-file', [UnggahFileController::class, 'index'])->name('unggah-file');
+
+Route::put('/informasi-pribadi/data-pribadi', [InformasiDataPribadiController::class, 'kontakPribadi'])->name('put.infomrasi-pribadi');
+Route::put('/informasi-pribadi/data-alamat', [InformasiDataPribadiController::class, 'alamatPribadi'])->name('put.alamat-pribadi');

@@ -22,22 +22,22 @@
         <h6 class="m-0 font-weight-bold text-primary">Data dan Kontak Pribadi</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{ route('put.infomrasi-pribadi') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="nik">Nomor Induk Kewarganegaraan (NIK)</label>
-                        <input type="text" class="form-control form-control-user" id="nik" value="{{$data_maba->nik}}">
+                        <input type="text" name="nik" class="form-control form-control-user" id="nik" value="{{$data_maba->nik}}">
                     </div>
                     <div class="form-group">
                         <label for="nis">Nomor Induk Siswa (NIS)</label>
-                        <input type="text" class="form-control form-control-user" id="nis" value="{{$data_maba->nis}}">
+                        <input type="text" name="nis" class="form-control form-control-user" id="nis" value="{{$data_maba->nis}}">
                     </div>
                     <div class="form-group">
                         <label for="nama_maba">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-user" id="nama_maba"
+                        <input type="text" name="nama_maba" class="form-control form-control-user" id="nama_maba"
                             value="{{$data_maba->nama_maba}}">
                     </div>
                     {{-- Agama --}}
@@ -94,17 +94,17 @@
                     </div>
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
-                        <input type="number" class="form-control form-control-user" id="nomor_hp"
+                        <input type="number" name="nomor_hp" class="form-control form-control-user" id="nomor_hp"
                             value="{{$data_maba->nomor_hp}}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control form-control-user" id="email"
+                        <input type="email" name="email" class="form-control form-control-user" id="email"
                             aria-describedby="emailHelp" value="{{$data_maba->email}}">
                     </div>
                     <div class="form-group">
                         <label for="password">Kata Sandi</label>
-                        <input type="password" class="form-control form-control-user" id="password"
+                        <input type="password" name="password" class="form-control form-control-user" id="password"
                             aria-describedby="emailHelp" value="">
                     </div>
                 </div>
@@ -127,14 +127,14 @@
         <h6 class="m-0 font-weight-bold text-primary">Alamat Tempat Tinggal</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{route('put.alamat-pribadi')}}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control form-control-user" id="alamat" value="{{$data_maba->alamat}}">
+                        <input type="text" name="alamat" class="form-control form-control-user" id="alamat" value="{{$data_maba->alamat}}">
                     </div>
                 </div>
             </div>
@@ -143,6 +143,9 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
+                            <option value="{{ $data_maba->kode_provinsi??'' }}" selected>
+                                {{ $data_maba->kode_provinsi?$data_maba->provinsi->nama_provinsi : "---Pilih Provinsi---" }}
+                            </option>
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
                             @endforeach
@@ -164,7 +167,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kode_pos">Kode Pos</label>
-                        <input type="number" class="form-control form-control-user" id="kode_pos" value="{{$data_maba->kode_pos}}">
+                        <input type="number" name="kode_pos" class="form-control form-control-user" id="kode_pos" value="{{$data_maba->kode_pos}}">
                     </div>
                 </div>
             </div>

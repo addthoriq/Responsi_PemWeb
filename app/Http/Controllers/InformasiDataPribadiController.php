@@ -17,20 +17,54 @@ class InformasiDataPribadiController extends Controller
     }
 
     private $dir_view = 'maba.InformasiDataPribadi.';
-    private $url_redirect = '/informasi-pribadi';
+    private $url_redirect = 'informasi-pribadi';
 
     public function index()
     {
-        $agama = Agama::get();
-        $provinsi = Provinsi::get();
-        $kabupaten = Kabupaten::get();
-        $kecamatan = Kecamatan::get();
-        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik)->first();
-        return view($this->dir_view.'beranda', compact('agama', 'data_maba', 'provinsi', 'kecamatan', 'kabupaten'));
+        $data['agama'] = Agama::get();
+        $data['provinsi'] = Provinsi::get();
+        $data['kabupaten'] = Kabupaten::get();
+        $data['kecamatan'] = Kecamatan::get();
+        $data['data_maba'] = CalonMaba::where('nik', '=', Auth::user()->nik)->first();
+        return view($this->dir_view.'beranda', $data);
     }
     
-    public function update(Request $request, $kode)
+    public function kontakPribadi(Request $request)
     {
-        //
+        if (empty($request->password)) {
+            CalonMaba::where('nik', '=', Auth::user()->nik)->first()->update([
+                'nik' => $request->nik,
+                'nis' => $request->nis,
+                'nama_maba' => $request->nama_maba,
+                'kode_agama' => $request->agama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'nomor_hp' => $request->nomor_hp,
+                'email' => $request->email
+            ]);
+        } else {
+            CalonMaba::where('nik', '=', $this->nik_maba)->first()->update([
+                'nik' => $request->nik,
+                'nis' => $request->nis,
+                'nama_maba' => $request->nama_maba,
+                'kode_agama' => $request->agama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'nomor_hp' => $request->nomor_hp,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+        }
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
+    }
+
+    public function alamatPribadi(Request $request)
+    {
+        CalonMaba::where('nik', '=', Auth::user()->nik)->first()->update([
+            'alamat' => $request->alamat,
+            'kode_provinsi' => $request->provinsi,
+            'kode_kabupaten' => $request->kabupaten,
+            'kode_kecamatan' => $request->kecamatan,
+            'kode_pos' => $request->kode_pos
+        ]);
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\AuthMaba;
 
 use App\Http\Controllers\Controller;
+use App\Models\CalonMaba;
+use App\Models\FileMaba;
+use App\Models\RiwayatPendMaba;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -29,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/beranda';
 
     /**
      * Create a new controller instance.
@@ -38,7 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:maba');
     }
 
     /**
@@ -49,11 +52,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        $v = Validator::make($data, [
+            'nik' => ['required', 'min:15'],
+            'nama_maba' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:App\Models\CalonMaba,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        return $v;
     }
 
     /**
@@ -64,10 +69,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $nik = $data['nik'];
+        $pass = $data['password'];
+        $calonMaba = CalonMaba::create([
+            'nik' => $nik,
+            'nama_maba' => $data['nama_maba'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($pass),
         ]);
+        // RiwayatPendMaba::create([
+        //     'nik_maba' => $nik,
+        //     'nama_sekolah' => "-",
+        //     'nomor_ijazah' => "-",
+        //     'tahun_lulus' => "-",
+        //     'nilai_rata_rata' => "-",
+        //     'nama_file_ijazah' => "-",
+        // ]);
+        FileMaba::create([
+            'nik_maba' => $nik
+        ]);
+        $calonMaba->riwayatPendMaba->create([
+            'nik_maba' => $nik,
+            'nama_sekolah' => "-",
+            'nomor_ijazah' => "-",
+            'tahun_lulus' => "-",
+            'nilai_rata_rata' => "-",
+            'nama_file_ijazah' => "-",
+        ]);
+        $calonMaba->fileMaba->create([
+            'nik_maba' => $nik,
+            'nama_sekolah' => "-",
+            'nomor_ijazah' => "-",
+            'tahun_lulus' => "-",
+            'nilai_rata_rata' => "-",
+            'nama_file_ijazah' => "-",
+        ]);
+        return $calonMaba;
     }
 }

@@ -143,8 +143,6 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
-                            {{-- <option value="{{$data_maba->provinsi->kode_provinsi??''}}" selected>
-                                {{$data_maba->provinsi->nama_provinsi??''}}</option> --}}
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
                             @endforeach

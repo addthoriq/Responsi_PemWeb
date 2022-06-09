@@ -16,7 +16,8 @@ class RiwayatPendidikanController extends Controller
 
     public function index()
     {
-        $data['data_riwayat'] = RiwayatPendMaba::where('kode_nik_maba', '=', Auth::user()->nik)->get()??'';
+        $data['data_riwayat'] = RiwayatPendMaba::where('nik_maba', '=', Auth::user()->nik)->first();
+        // dd($data);
         return view($this->dir_view.'beranda', $data);
     }
 }

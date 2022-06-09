@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 // Auth Controller
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AuthMaba\LoginController as MabaLoginController;
+use App\Http\Controllers\AuthMaba\{LoginController as MabaLoginController, RegisterController as MabaRegisterController};
 // Admin Controller
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
@@ -25,7 +25,9 @@ Route::get('/', [MabaLoginController::class, 'showLoginForm'])->name('masuk');
 
 Route::get('/daftar', function(){
     return view('daftar');
-})->name('daftar')->middleware('auth');
+})->name('daftar');
+
+Route::post('/daftar-post', [MabaRegisterController::class, 'register'])->name('daftar-post');
 
 // plugin alamat
 Route::post('/kabupatenAll', [WilayahController::class, 'getAllKabupaten'])->name('wilayah.kabupaten.all');

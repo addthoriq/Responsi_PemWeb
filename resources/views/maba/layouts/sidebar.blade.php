@@ -58,7 +58,7 @@
 
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item {{Request::is('/asal-sekolah')?'active':''}}">
+    <li class="nav-item {{Request::is('asal-sekolah')?'active':''}}">
         <a class="nav-link" href="{{route('asal-sekolah')}}">
             <i class="fas fa-file-alt"></i>
             <span>Riwayat Pendidikan</span>

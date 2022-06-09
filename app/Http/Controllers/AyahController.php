@@ -22,6 +22,7 @@ class AyahController extends Controller
     }
 
     private $dir_view = 'maba.InformasiDataKeluarga.';
+    private $url_redirect = 'informasi-ayah';
 
     public function index()
     {
@@ -37,8 +38,35 @@ class AyahController extends Controller
         return view($this->dir_view.'ayah', $data);
     }
 
-    public function update(Request $request, $kode)
+    public function kontakPribadi(Request $request)
     {
-        //
+        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
+        if (empty($data_maba->exists())){
+            Ayah::create([
+                'nik' => $request->nik,
+                'nama_ayah' => $request->nama_ayah,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ayah' => $request->nik,
+                'hubungan_ayah' => $request->hubungan_ayah
+            ]);
+        } else {
+            Ayah::where('nik', '=', $data_maba->first()->nik_ayah)->update([
+                'nik' => $request->nik,
+                'nama_ayah' => $request->nama_ayah,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ayah' => $request->nik,
+                'hubungan_ayah' => $request->hubungan_ayah
+            ]);
+        }
+
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
     }
 }

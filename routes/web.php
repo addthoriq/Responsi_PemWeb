@@ -65,3 +65,5 @@ Route::get('/unggah-file', [UnggahFileController::class, 'index'])->name('unggah
 
 Route::put('/informasi-pribadi/data-pribadi', [InformasiDataPribadiController::class, 'kontakPribadi'])->name('put.infomrasi-pribadi');
 Route::put('/informasi-pribadi/data-alamat', [InformasiDataPribadiController::class, 'alamatPribadi'])->name('put.alamat-pribadi');
+
+Route::put('/informasi-ayah/data-pribadi', [AyahController::class, 'kontakPribadi'])->name('put.kontak-ayah');

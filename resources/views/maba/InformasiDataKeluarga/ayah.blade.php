@@ -22,18 +22,18 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Pribadi Ayah</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{ route('put.kontak-ayah') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="nik">Nomor Induk Kewarganegaraan (NIK)</label>
-                        <input type="text" class="form-control form-control-user" id="nik" value="{{($data_maba->ayah->nik)??''}}">
+                        <input type="text" name="nik" class="form-control form-control-user" id="nik" value="{{($data_maba->ayah->nik)??''}}">
                     </div>
                     <div class="form-group">
                         <label for="nama_ayah">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-user" id="nama_ayah"
+                        <input type="text" name="nama_ayah" class="form-control form-control-user" id="nama_ayah"
                             value="{{($data_maba->ayah->nama_ayah)??''}}">
                     </div>
                     {{-- Agama --}}
@@ -50,16 +50,17 @@
                     {{-- End Agama --}}
                     <div class="form-group">
                         <label for="kewarganegaraan">Kewarganegaraan</label>
-                        <input type="text" class="form-control form-control-user" id="kewarganegaraan"
+                        <input type="text" name="kewarganegaraan" class="form-control form-control-user" id="kewarganegaraan"
                         value="{{($data_maba->ayah->kewarganegaraan)??''}}">
                     </div>
                     <div class="form-group">
-                        <label for="agama">Status Hubungan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ayah->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ayah->agama->nama_agama??''}}</option> --}}
+                        <label for="hubungan_ayah">Status Hubungan</label>
+                        <select name="hubungan_ayah" id="hubungan_ayah" class="form-control">
+                            <option value="{{ $data_maba->hubungan_ayah??'' }}" selected>
+                                {{ $data_maba->hubungan_ayah ? $data_maba->hubunganAyah->nama_hubungan : '---Pilih Status Hubungan---' }}
+                            </option>
                             @foreach ($hubungan as $hub)
-                            <option value="{{$hub->kode_hubungan}}">{{$hub->nama_hubungan}}</option>
+                            <option value="{{$hub->kode_status}}">{{$hub->nama_hubungan}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -87,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
-                        <input type="number" class="form-control form-control-user" id="nomor_hp"
+                        <input type="number" name="nomor_hp" class="form-control form-control-user" id="nomor_hp"
                             value="{{($data_maba->ayah->nomor_hp)??''}}">
                     </div>
                 </div>

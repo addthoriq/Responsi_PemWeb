@@ -50,9 +50,14 @@ class CalonMaba extends Authenticatable
         return $this->belongsTo(Ibu::class, 'nik_ibu', 'nik');
     }
 
-    public function statusHubungan()
+    public function hubunganAyah()
     {
-        return $this->belongsTo(StatusHubungan::class, 'kode_status');
+        return $this->belongsTo(StatusHubungan::class, 'hubungan_ayah', 'kode_status');
+    }
+
+    public function hubunganIbu()
+    {
+        return $this->belongsTo(StatusHubungan::class, 'hubungan_ibu', 'kode_status');
     }
 
     public function provinsi()

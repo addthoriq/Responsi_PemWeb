@@ -55,12 +55,12 @@ return new class extends Migration
         
         Schema::create('riwayat_pend_maba', function (Blueprint $table){
             $table->char('nik_maba', 16)->primary();
-            $table->string('nama_sekolah', 50);
-            $table->char('nomor_ijazah', 18);
+            $table->string('nama_sekolah', 50)->nullable();
+            $table->char('nomor_ijazah', 18)->nullable();
             $table->char('tgl_lulus', 10)->nullable();
-            $table->char('tahun_lulus', 4);
-            $table->char('nilai_rata_rata', 2);
-            $table->string('nama_file_ijazah');
+            $table->char('tahun_lulus', 4)->nullable();
+            $table->char('nilai_rata_rata', 2)->nullable();
+            $table->string('nama_file_ijazah')->nullable();
             $table->timestamps();
             $table->foreign('nik_maba')->references('nik')->on('calon_maba');
         });

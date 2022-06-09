@@ -78,32 +78,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($pass),
         ]);
-        // RiwayatPendMaba::create([
-        //     'nik_maba' => $nik,
-        //     'nama_sekolah' => "-",
-        //     'nomor_ijazah' => "-",
-        //     'tahun_lulus' => "-",
-        //     'nilai_rata_rata' => "-",
-        //     'nama_file_ijazah' => "-",
-        // ]);
+        RiwayatPendMaba::create([
+            'nik_maba' => $nik,
+        ]);
         FileMaba::create([
-            'nik_maba' => $nik
-        ]);
-        $calonMaba->riwayatPendMaba->create([
             'nik_maba' => $nik,
-            'nama_sekolah' => "-",
-            'nomor_ijazah' => "-",
-            'tahun_lulus' => "-",
-            'nilai_rata_rata' => "-",
-            'nama_file_ijazah' => "-",
-        ]);
-        $calonMaba->fileMaba->create([
-            'nik_maba' => $nik,
-            'nama_sekolah' => "-",
-            'nomor_ijazah' => "-",
-            'tahun_lulus' => "-",
-            'nilai_rata_rata' => "-",
-            'nama_file_ijazah' => "-",
         ]);
         return $calonMaba;
     }

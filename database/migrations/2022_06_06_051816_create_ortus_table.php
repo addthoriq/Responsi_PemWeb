@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('ayah', function (Blueprint $table) {
             $table->char('nik', 16)->primary();
-            $table->char('kode_pekerjaan', 5);
+            $table->char('kode_pekerjaan', 5)->nullable();
             $table->char('kode_agama', 3);
             $table->string('nama_ayah', 30);
             $table->string('nomor_hp', 13);
-            $table->string('alamat', 50);
-            $table->char('kode_pos', 5);
+            $table->string('alamat', 50)->nullable();
+            $table->char('kode_pos', 5)->nullable();
             $table->char('kode_kecamatan', 7)->nullable();
             $table->char('kode_kabupaten', 4)->nullable();
             $table->char('kode_provinsi', 2)->nullable();
-            $table->char('kode_pendidikan', 3);
+            $table->char('kode_pendidikan', 3)->nullable();
             $table->string('kewarganegaraan', 30);
             $table->string('file_ktp_ayah', 200)->nullable();
-            $table->char('kode_penghasilan', 5);
-            $table->bigInteger('nominal');
+            $table->char('kode_penghasilan', 5)->nullable();
+            $table->bigInteger('nominal')->nullable();
             $table->timestamps();
 
             $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');
@@ -39,20 +39,20 @@ return new class extends Migration
 
         Schema::create('ibu', function (Blueprint $table) {
             $table->char('nik', 16)->primary();
-            $table->char('kode_pekerjaan', 5);
+            $table->char('kode_pekerjaan', 5)->nullable();
             $table->char('kode_agama', 3);
             $table->string('nama_ibu', 30);
             $table->string('nomor_hp', 13);
-            $table->string('alamat', 50);
-            $table->char('kode_pos', 5);
+            $table->string('alamat', 50)->nullable();
+            $table->char('kode_pos', 5)->nullable();
             $table->char('kode_kecamatan', 7)->nullable();
             $table->char('kode_kabupaten', 4)->nullable();
             $table->char('kode_provinsi', 2)->nullable();
-            $table->char('kode_pendidikan', 3);
+            $table->char('kode_pendidikan', 3)->nullable();
             $table->string('kewarganegaraan', 30);
             $table->string('file_ktp_ibu', 200)->nullable();
-            $table->char('kode_penghasilan', 5);
-            $table->bigInteger('nominal');
+            $table->char('kode_penghasilan', 5)->nullable();
+            $table->bigInteger('nominal')->nullable();
             $table->timestamps();
 
             $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');

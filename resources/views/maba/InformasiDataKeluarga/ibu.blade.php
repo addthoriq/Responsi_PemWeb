@@ -22,27 +22,29 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Pribadi Ibu</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{ route('put.kontak-ibu') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="nik">Nomor Induk Kewarganegaraan (NIK)</label>
-                        <input type="text" class="form-control form-control-user" id="nik"
+                        <input type="text" name="nik" class="form-control form-control-user" id="nik"
                             value="{{($data_maba->ibu->nik)??''}}">
                     </div>
                     <div class="form-group">
-                        <label for="nama_Ibu">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-user" id="nama_Ibu"
-                            value="{{($data_maba->ibu->nama_Ibu)??''}}">
+                        <label for="nama_ibu">Nama Lengkap</label>
+                        <input type="text" name="nama_ibu" class="form-control form-control-user" id="nama_ibu"
+                            value="{{($data_maba->ibu->nama_ibu)??''}}">
                     </div>
                     {{-- Agama --}}
                     <div class="form-group">
                         <label for="agama">Agama</label>
                         <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ibu->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ibu->agama->nama_agama??''}}</option> --}}
+                            <option value="{{ isset($data_maba->ibu->kode_agama)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_agama) ? $data_maba->ibu->agama->nama_agama : "---Pilih
+                                Agama---" }}
+                            </option>
                             @foreach ($agama as $ag)
                             <option value="{{$ag->kode_agama}}">{{$ag->nama_agama}}</option>
                             @endforeach
@@ -51,16 +53,18 @@
                     {{-- End Agama --}}
                     <div class="form-group">
                         <label for="kewarganegaraan">Kewarganegaraan</label>
-                        <input type="text" class="form-control form-control-user" id="kewarganegaraan"
-                            value="{{($data_maba->ibu->kewarganegaraan)??''}}">
+                        <input type="text" name="kewarganegaraan" class="form-control form-control-user"
+                            id="kewarganegaraan" value="{{($data_maba->ibu->kewarganegaraan)??''}}">
                     </div>
                     <div class="form-group">
-                        <label for="agama">Status Hubungan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ibu->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ibu->agama->nama_agama??''}}</option> --}}
+                        <label for="hubungan_ibu">Status Hubungan</label>
+                        <select name="hubungan_ibu" id="hubungan_ibu" class="form-control">
+                            <option value="{{ isset($data_maba->hubungan_ibu)??'' }}" selected>
+                                {{ $data_maba->hubungan_ibu ? $data_maba->hubunganIbu->nama_hubungan : '---Pilih
+                                Status Hubungan---' }}
+                            </option>
                             @foreach ($hubungan as $hub)
-                            <option value="{{$hub->kode_hubungan}}">{{$hub->nama_hubungan}}</option>
+                            <option value="{{$hub->kode_status}}">{{$hub->nama_hubungan}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -88,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
-                        <input type="number" class="form-control form-control-user" id="nomor_hp"
+                        <input type="number" name="nomor_hp" class="form-control form-control-user" id="nomor_hp"
                             value="{{($data_maba->ibu->nomor_hp)??''}}">
                     </div>
                 </div>
@@ -111,14 +115,14 @@
         <h6 class="m-0 font-weight-bold text-primary">Alamat Tempat Tinggal Ibu</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{ route('put.alamat-ibu') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control form-control-user" id="alamat"
+                        <input type="text" name="alamat" class="form-control form-control-user" id="alamat"
                             value="{{($data_maba->ibu->alamat)??''}}">
                     </div>
                 </div>
@@ -128,6 +132,10 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
+                            <option value="{{ isset($data_maba->ibu->kode_provinsi)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_provinsi) ? $data_maba->ibu->provinsi->nama_provinsi :
+                                "---Pilih Provinsi---" }}
+                            </option>
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
                             @endforeach
@@ -136,7 +144,10 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            <option value="" selected>---Pilih Kabupaten---</option>
+                            <option value="{{ isset($data_maba->ibu->kode_kabupaten)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_kabupaten) ? $data_maba->ibu->kabupaten->nama_kabupaten :
+                                "---Pilih Kabupaten---" }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -144,12 +155,15 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option value="" selected>---Pilih Kecamatan---</option>
+                            <option value="{{ isset($data_maba->ibu->kode_kecamatan)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_kecamatan) ? $data_maba->ibu->kecamatan->nama_kecamatan :
+                                "---Pilih Kecamatan---" }}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="kode_pos">Kode Pos</label>
-                        <input type="number" class="form-control form-control-user" id="kode_pos"
+                        <input type="number" name="kode_pos" class="form-control form-control-user" id="kode_pos"
                             value="{{($data_maba->ibu->kode_pos)??''}}">
                     </div>
                 </div>
@@ -172,26 +186,30 @@
         <h6 class="m-0 font-weight-bold text-primary">Pekerjaan dan Riwayat Pendidikan Ibu</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{route('put.pendidikan-ibu')}}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="agama">Pendidikan Terakhir</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ibu->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ibu->agama->nama_agama??''}}</option> --}}
+                        <label for="pendidikan">Pendidikan Terakhir</label>
+                        <select name="pendidikan" id="pendidikan" class="form-control">
+                            <option value="{{ isset($data_maba->ibu->kode_pendidikan)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_pendidikan) ?
+                                $data_maba->ibu->pendidikanTerakhir->nama_pendidikan : "---Pendidikan Terkahir---" }}
+                            </option>
                             @foreach ($pendidikan as $pdd)
                             <option value="{{$pdd->kode_pendidikan}}">{{$pdd->nama_pendidikan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="agama">Pekerjaan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ibu->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ibu->agama->nama_agama??''}}</option> --}}
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <select name="pekerjaan" id="pekerjaan" class="form-control">
+                            <option value="{{ isset($data_maba->ibu->kode_pekerjaan)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_pekerjaan) ? $data_maba->ibu->pekerjaan->nama_pekerjaan :
+                                "---Pilih Pekerjaan---" }}
+                            </option>
                             @foreach ($pekerjaan as $pkj)
                             <option value="{{$pkj->kode_pekerjaan}}">{{$pkj->nama_pekerjaan}}</option>
                             @endforeach
@@ -200,18 +218,21 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="agama">Jumlah Penghasilan</label>
-                        <select name="agama" id="agama" class="form-control">
-                            {{-- <option value="{{$data_maba->ibu->agama->kode_agama??''}}" selected>
-                                {{$data_maba->ibu->agama->nama_agama??''}}</option> --}}
+                        <label for="penghasilan">Jumlah Penghasilan</label>
+                        <select name="penghasilan" id="penghasilan" class="form-control">
+                            <option value="{{ isset($data_maba->ibu->kode_penghasilan)??'' }}" selected>
+                                {{ isset($data_maba->ibu->kode_penghasilan) ?
+                                $data_maba->ibu->jumlahPenghasilan->keterangan_penghasilan : "--- Jumlah Penghasilan
+                                ---" }}
+                            </option>
                             @foreach ($penghasilan as $phsl)
                             <option value="{{$phsl->kode_penghasilan}}">{{$phsl->keterangan_penghasilan}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nik">Nominal Gaji Ibu</label>
-                        <input type="number" class="form-control form-control-user" id="nik"
+                        <label for="nominal">Nominal Gaji Ibu</label>
+                        <input type="number" name="nominal" class="form-control form-control-user" id="nominal"
                             value="{{($data_maba->ibu->nominal)??''}}">
                     </div>
                 </div>

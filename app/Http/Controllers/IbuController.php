@@ -22,6 +22,7 @@ class IbuController extends Controller
     }
 
     private $dir_view = 'maba.InformasiDataKeluarga.';
+    private $url_redirect = 'informasi-ibu';
 
     public function index()
     {
@@ -36,9 +37,81 @@ class IbuController extends Controller
         $data['hubungan'] = StatusHubungan::get();
         return view($this->dir_view.'ibu', $data);
     }
-
-    public function update(Request $request, $kode)
+    public function kontakPribadi(Request $request)
     {
-        //
+        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
+        if (empty($data_maba->exists())) {
+            Ibu::create([
+                'nik' => $request->nik,
+                'nama_ibu' => $request->nama_ibu,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ibu' => $request->nik,
+                'hubungan_ibu' => $request->hubungan_ibu
+            ]);
+        } else {
+            Ibu::where('nik', '=', $data_maba->first()->nik_ibu)->update([
+                'nik' => $request->nik,
+                'nama_ibu' => $request->nama_ibu,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ibu' => $request->nik,
+                'hubungan_ibu' => $request->hubungan_ibu
+            ]);
+        }
+
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
+    }
+
+    public function alamatPribadi(Request $request)
+    {
+        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
+        if (empty($data_maba->exists())) {
+            Ibu::create([
+                'kode_pos' => $request->kode_pos,
+                'kode_kecamatan' => $request->kecamatan,
+                'kode_kabupaten' => $request->kabupaten,
+                'kode_provinsi' => $request->provinsi,
+                'alamat' => $request->alamat,
+            ]);
+        } else {
+            Ibu::where('nik', '=', $data_maba->first()->nik_ibu)->update([
+                'kode_pos' => $request->kode_pos,
+                'kode_kecamatan' => $request->kecamatan,
+                'kode_kabupaten' => $request->kabupaten,
+                'kode_provinsi' => $request->provinsi,
+                'alamat' => $request->alamat,
+            ]);
+        }
+
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
+    }
+
+    public function pendidikanTerakhir(Request $request)
+    {
+        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
+        if (empty($data_maba->exists())) {
+            Ibu::create([
+                'kode_pekerjaan' => $request->pekerjaan,
+                'kode_pendidikan' => $request->pendidikan,
+                'kode_penghasilan' => $request->penghasilan,
+                'nominal' => $request->nominal,
+            ]);
+        } else {
+            Ibu::where('nik', '=', $data_maba->first()->nik_ibu)->update([
+                'kode_pekerjaan' => $request->pekerjaan,
+                'kode_pendidikan' => $request->pendidikan,
+                'kode_penghasilan' => $request->penghasilan,
+                'nominal' => $request->nominal,
+            ]);
+        }
+
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
     }
 }

@@ -53,6 +53,18 @@ class AyahController extends Controller
                 'nik_ayah' => $request->nik,
                 'hubungan_ayah' => $request->hubungan_ayah
             ]);
+        } elseif ($data_maba->exists()) {
+            Ayah::create([
+                'nik' => $request->nik,
+                'nama_ayah' => $request->nama_ayah,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ayah' => $request->nik,
+                'hubungan_ayah' => $request->hubungan_ayah
+            ]);
         } else {
             Ayah::where('nik', '=', $data_maba->first()->nik_ayah)->update([
                 'nik' => $request->nik,
@@ -99,14 +111,21 @@ class AyahController extends Controller
         $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
         if (empty($data_maba->exists())) {
             Ayah::create([
-                'kode_pekerjaan' => $request->pekerjaan,
+                'kode_pekerjaan' => $request->kode_pekerjaan,
+                'kode_pendidikan' => $request->pendidikan,
+                'kode_penghasilan' => $request->penghasilan,
+                'nominal' => $request->nominal,
+            ]);
+        }  elseif ($data_maba->exists()) {
+            Ayah::create([
+                'kode_pekerjaan' => $request->kode_pekerjaan,
                 'kode_pendidikan' => $request->pendidikan,
                 'kode_penghasilan' => $request->penghasilan,
                 'nominal' => $request->nominal,
             ]);
         } else {
             Ayah::where('nik', '=', $data_maba->first()->nik_ayah)->update([
-                'kode_pekerjaan' => $request->pekerjaan,
+                'kode_pekerjaan' => $request->kode_pekerjaan,
                 'kode_pendidikan' => $request->pendidikan,
                 'kode_penghasilan' => $request->penghasilan,
                 'nominal' => $request->nominal,

@@ -22,7 +22,7 @@ class Ibu extends Model
 
     public function calonMaba()
     {
-        return $this->hasMany(CalonMaba::class, 'nik_ayah', 'nik');
+        return $this->hasMany(CalonMaba::class, 'nik_ibu', 'nik');
     }
 
     public function jumlahPenghasilan()

@@ -154,7 +154,9 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            <option value="" selected>---Pilih Kabupaten---</option>
+                            <option value="{{ $data_maba->kode_kabupaten??'' }}" selected>
+                                {{ $data_maba->kode_kabupaten ? $data_maba->kabupaten->nama_kabupaten : "---Pilih Kabupaten---" }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -162,7 +164,9 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option value="" selected>---Pilih Kecamatan---</option>
+                            <option value="{{ $data_maba->kode_kecamatan??'' }}" selected>
+                                {{ $data_maba->kode_kecamatan ? $data_maba->kecamatan->nama_kecamatan : '---Pilih Kecamatan---' }}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">

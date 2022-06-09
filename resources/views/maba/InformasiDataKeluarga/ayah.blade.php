@@ -111,14 +111,14 @@
         <h6 class="m-0 font-weight-bold text-primary">Alamat Tempat Tinggal Ayah</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST">
+        <form class="user" action="{{ route('put.alamat-ayah') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control form-control-user" id="alamat"
+                        <input type="text" name="alamat" class="form-control form-control-user" id="alamat"
                             value="{{($data_maba->ayah->alamat)??''}}">
                     </div>
                 </div>
@@ -128,6 +128,9 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
+                            <option value="{{ $data_maba->ayah->kode_provinsi??'' }}" selected>
+                                {{ $data_maba->ayah->kode_provinsi ? $data_maba->ayah->provinsi->nama_provinsi : "---Pilih Provinsi---" }}
+                            </option>
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
                             @endforeach
@@ -136,7 +139,9 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            <option value="" selected>---Pilih Kabupaten---</option>
+                            <option value="{{ $data_maba->ayah->kode_kabupaten??'' }}" selected>
+                                {{ $data_maba->ayah->kode_kabupaten ? $data_maba->ayah->kabupaten->nama_kabupaten : "---Pilih Kabupaten---" }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -144,12 +149,14 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option value="" selected>---Pilih Kecamatan---</option>
+                            <option value="{{ $data_maba->ayah->kode_kecamatan??'' }}" selected>
+                                {{ $data_maba->ayah->kode_kecamatan ? $data_maba->ayah->kecamatan->nama_kecamatan : "---Pilih Kecamatan---" }}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="kode_pos">Kode Pos</label>
-                        <input type="number" class="form-control form-control-user" id="kode_pos"
+                        <input type="number" name="kode_pos" class="form-control form-control-user" id="kode_pos"
                             value="{{($data_maba->ayah->kode_pos)??''}}">
                     </div>
                 </div>

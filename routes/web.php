@@ -67,3 +67,4 @@ Route::put('/informasi-pribadi/data-pribadi', [InformasiDataPribadiController::c
 Route::put('/informasi-pribadi/data-alamat', [InformasiDataPribadiController::class, 'alamatPribadi'])->name('put.alamat-pribadi');
 
 Route::put('/informasi-ayah/data-pribadi', [AyahController::class, 'kontakPribadi'])->name('put.kontak-ayah');
+Route::put('/infomrasi-ayah/data-alamat', [AyahController::class, 'alamatPribadi'])->name('put.alamat-ayah');

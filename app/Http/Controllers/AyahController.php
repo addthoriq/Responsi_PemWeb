@@ -69,4 +69,28 @@ class AyahController extends Controller
 
         return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
     }
+
+    public function alamatPribadi(Request $request)
+    {
+        $data_maba = CalonMaba::where('nik', '=', Auth::user()->nik);
+        if (empty($data_maba->exists())) {
+            Ayah::create([
+                'kode_pos' => $request->kode_pos,
+                'kode_kecamatan' => $request->kecamatan,
+                'kode_kabupaten' => $request->kabupaten,
+                'kode_provinsi' => $request->provinsi,
+                'alamat' => $request->alamat,
+            ]);
+        } else {
+            Ayah::where('nik', '=', $data_maba->first()->nik_ayah)->update([
+                'kode_pos' => $request->kode_pos,
+                'kode_kecamatan' => $request->kecamatan,
+                'kode_kabupaten' => $request->kabupaten,
+                'kode_provinsi' => $request->provinsi,
+                'alamat' => $request->alamat,
+            ]);
+        }
+
+        return redirect()->route($this->url_redirect)->with('notifikasi', 'Data Berhasil Disimpan!');
+    }
 }

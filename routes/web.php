@@ -8,7 +8,7 @@ use App\Http\Controllers\AuthMaba\{LoginController as MabaLoginController, Regis
 // Admin Controller
 use App\Http\Controllers\Admin\HomeController as AdminController;
 // Maba Controller
-use App\Http\Controllers\{HomeController, AyahController, IbuController, InformasiDataPribadiController, WilayahController, RiwayatPendidikanController};
+use App\Http\Controllers\{HomeController, AyahController, IbuController, InformasiDataPribadiController, WilayahController, RiwayatPendidikanController, UnggahFileController};
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +61,4 @@ Route::get('/informasi-pribadi', [InformasiDataPribadiController::class, 'index'
 Route::get('/informasi-ayah', [AyahController::class, 'index'])->name('informasi-ayah');
 Route::get('/informasi-ibu', [IbuController::class, 'index'])->name('informasi-ibu');
 Route::get('/asal-sekolah', [RiwayatPendidikanController::class, 'index'])->name('asal-sekolah');
+Route::get('/unggah-file', [UnggahFileController::class, 'index'])->name('unggah-file');

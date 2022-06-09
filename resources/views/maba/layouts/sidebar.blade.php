@@ -66,8 +66,8 @@
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+    <li class="nav-item {{Request::is('unggah-file')?'active':''}} ">
+        <a class="nav-link" href="{{route('unggah-file')}}">
             <i class="fas fa-cloud-upload-alt"></i>
             <span>Unggah Berkas</span>
         </a>

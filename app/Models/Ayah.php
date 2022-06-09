@@ -17,41 +17,41 @@ class Ayah extends Model
 
     public function agama()
     {
-        return $this->belongsTo(Agama::class);
+        return $this->belongsTo(Agama::class, 'kode_agama');
     }
 
     public function calonMaba()
     {
-        return $this->hasMany(CalonMaba::class);
+        return $this->hasMany(CalonMaba::class, 'nik_ayah', 'nik');
     }
 
     public function jumlahPenghasilan()
     {
-        return $this->belongsTo(JumlahPenghasilan::class);
+        return $this->belongsTo(JumlahPenghasilan::class, 'kode_penghasilan');
     }
 
     public function pekerjaan()
     {
-        return $this->belongsTo(Pekerjaan::class);
+        return $this->belongsTo(Pekerjaan::class, 'kode_pekerjaan');
     }
 
     public function pendidikanTerakhir()
     {
-        return $this->belongsTo(PendidikanTerakhir::class);
+        return $this->belongsTo(PendidikanTerakhir::class, 'kode_pendidikan');
     }
 
     public function provinsi()
     {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Provinsi::class, 'kode_provinsi');
     }
 
     public function kabupaten()
     {
-        return $this->belongsTo(Kabupaten::class);
+        return $this->belongsTo(Kabupaten::class, 'kode_kabupaten');
     }
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class);
+        return $this->belongsTo(Kecamatan::class, 'kode_kecamatan');
     }
 }

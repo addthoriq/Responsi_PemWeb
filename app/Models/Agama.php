@@ -17,16 +17,16 @@ class Agama extends Model
 
     public function calonMaba()
     {
-        return $this->hasMany(CalonMaba::class);
+        return $this->hasMany(CalonMaba::class, 'kode_agama');
     }
 
     public function ayah()
     {
-        return $this->hasMany(Ayah::class);
+        return $this->hasMany(Ayah::class, 'kode_agama');
     }
 
     public function ibu()
     {
-        return $this->hasMany(Ibu::class);
+        return $this->hasMany(Ibu::class, 'kode_agama');
     }
 }

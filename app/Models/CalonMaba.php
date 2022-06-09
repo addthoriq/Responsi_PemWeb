@@ -32,46 +32,46 @@ class CalonMaba extends Authenticatable
 
     public function fileMaba()
     {
-        return $this->hasMany(FileMaba::class);
+        return $this->hasMany(FileMaba::class, 'nik_maba', 'nik');
     }
 
     public function riwayatPendMaba()
     {
-        return $this->hasMany(RiwayatPendMaba::class);
+        return $this->hasMany(RiwayatPendMaba::class, 'nik_maba', 'nik');
     }
 
     public function ayah()
     {
-        return $this->belongsTo(Ayah::class);
+        return $this->belongsTo(Ayah::class, 'nik_ayah', 'nik');
     }
     
     public function ibu()
     {
-        return $this->belongsTo(Ibu::class);
+        return $this->belongsTo(Ibu::class, 'nik_ibu', 'nik');
     }
 
     public function statusHubungan()
     {
-        return $this->belongsTo(StatusHubungan::class);
+        return $this->belongsTo(StatusHubungan::class, 'kode_status');
     }
 
     public function provinsi()
     {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Provinsi::class, 'kode_provinsi');
     }
 
     public function kabupaten()
     {
-        return $this->belongsTo(Kabupaten::class);
+        return $this->belongsTo(Kabupaten::class, 'kode_kabupaten');
     }
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class);
+        return $this->belongsTo(Kecamatan::class, 'kode_kecamatan');
     }
 
     public function programCalonmaba()
     {
-        return $this->hasMany(ProgramCalonmaba::class);
+        return $this->hasMany(ProgramCalonmaba::class, 'nik_maba', 'nik');
     }
 }

@@ -17,12 +17,12 @@ class ProgramCalonmaba extends Model
 
     public function calonMaba()
     {
-        return $this->belongsTo(CalonMaba::class);
+        return $this->belongsTo(CalonMaba::class, 'nik_maba', 'nik');
     }
 
     public function programKuliah()
     {
-        return $this->belongsTo(ProgramKuliah::class);
+        return $this->belongsTo(ProgramKuliah::class, 'kode_program');
     }
 
     public function jurusan()

@@ -17,6 +17,6 @@ class Fakultas extends Model
 
     public function jurusan()
     {
-        return $this->hasMany(Jurusan::class);
+        return $this->hasMany(Jurusan::class, 'kode_fakultas');
     }
 }

@@ -17,6 +17,6 @@ class RiwayatPendMaba extends Model
 
     public function calonMaba()
     {
-        return $this->belongsTo(CalonMaba::class);
+        return $this->belongsTo(CalonMaba::class, 'nik_maba', 'nik');
     }
 }

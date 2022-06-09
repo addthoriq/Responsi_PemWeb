@@ -17,6 +17,6 @@ class ProgramKuliah extends Model
     
     public function programCalonmaba()
     {
-        return $this->hasMany(ProgramCalonmaba::class);
+        return $this->hasMany(ProgramCalonmaba::class, 'kode_program');
     }
 }

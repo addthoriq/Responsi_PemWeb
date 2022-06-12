@@ -73,3 +73,5 @@ Route::put('/informasi-ayah/data-pendidikan', [AyahController::class, 'pendidika
 Route::put('/informasi-ibu/data-pribadi', [IbuController::class, 'kontakPribadi'])->name('put.kontak-ibu');
 Route::put('/infomrasi-ibu/data-alamat', [IbuController::class, 'alamatPribadi'])->name('put.alamat-ibu');
 Route::put('/informasi-ibu/data-pendidikan', [IbuController::class, 'pendidikanTerakhir'])->name('put.pendidikan-ibu');
+
+Route::put('/riwayat-pendidikan', [RiwayatPendidikanController::class, 'update'])->name('put.riwayat-pend');

@@ -12,25 +12,25 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Sekolah Asal</h6>
     </div>
     <div class="card-body">
-        <form class="user" action="" method="POST" enctype="multipart/form-data">
+        <form class="user" action="{{ route('put.riwayat-pend') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="nama_sekolah">Nama Sekolah</label>
-                        <input type="text" class="form-control form-control-user" id="nama_sekolah"
-                            value="{{$data_riwayat->nama_sekolah}}">
+                        <input type="text" name="nama_sekolah" class="form-control form-control-user" id="nama_sekolah"
+                            value="{{isset($data_riwayat->nama_sekolah)?$data_riwayat->nama_sekolah:''}}">
                     </div>
                     <div class="form-group">
                         <label for="nomor_ijazah">Nomor Ijazah</label>
-                        <input type="text" class="form-control form-control-user" id="nomor_ijazah"
-                            value="{{$data_riwayat->nomor_ijazah}}">
+                        <input type="text" name="nomor_ijazah" class="form-control form-control-user" id="nomor_ijazah"
+                            value="{{isset($data_riwayat->nomor_ijazah)?$data_riwayat->nomor_ijazah:''}}">
                     </div>
                     <div class="form-group">
                         <label for="tgl_lulus">Tanggal Lulus</label>
-                        <input type="text" class="form-control form-control-user" id="tgl_lulus"
-                            value="{{$data_riwayat->tgl_lulus}}">
+                        <input type="text" name="tgl_lulus" class="form-control form-control-user" id="tgl_lulus"
+                            value="{{isset($data_riwayat->tgl_lulus)?$data_riwayat->tgl_lulus:''}}">
                     </div>
                 </div>
                 <div class="col">
@@ -40,13 +40,13 @@
                     </div>
                     <div class="form-group">
                         <label for="tahun_lulus">Tahun Lulus</label>
-                        <input type="number" class="form-control form-control-user" id="tahun_lulus"
-                            value="{{$data_riwayat->tahun_lulus}}">
+                        <input type="number" name="tahun_lulus" class="form-control form-control-user" id="tahun_lulus"
+                            value="{{isset($data_riwayat->tahun_lulus)?$data_riwayat->tahun_lulus:''}}">
                     </div>
                     <div class="form-group">
                         <label for="nilai_rata_rata">Nilai Rata-Rata Ijazah</label>
-                        <input type="number" class="form-control form-control-user" id="nilai_rata_rata"
-                            value="{{$data_riwayat->nilai_rata_rata}}">
+                        <input type="number" name="nilai_rata_rata" class="form-control form-control-user" id="nilai_rata_rata"
+                            value="{{isset($data_riwayat->nilai_rata_rata)?$data_riwayat->nilai_rata_rata:''}}">
                     </div>
                 </div>
             </div>

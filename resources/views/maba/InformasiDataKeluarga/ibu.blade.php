@@ -16,7 +16,7 @@
     <h1 class="h3 mb-0 text-gray-800">Informasi Data Keluarga</h1>
 </div>
 
-{{-- Data Pribadi Ibu --}}
+{{-- Data Pribadi ibu --}}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Pribadi Ibu</h6>
@@ -41,7 +41,8 @@
                     <div class="form-group">
                         <label for="agama">Agama</label>
                         <select name="agama" id="agama" class="form-control">
-                            <option value="{{ isset($data_maba->ibu->kode_agama)??'' }}" selected>
+                            <option value="{{ isset($data_maba->ibu->kode_agama)?$data_maba->ibu->kode_agama:'' }}"
+                                selected>
                                 {{ isset($data_maba->ibu->kode_agama) ? $data_maba->ibu->agama->nama_agama : "---Pilih
                                 Agama---" }}
                             </option>
@@ -59,9 +60,10 @@
                     <div class="form-group">
                         <label for="hubungan_ibu">Status Hubungan</label>
                         <select name="hubungan_ibu" id="hubungan_ibu" class="form-control">
-                            <option value="{{ isset($data_maba->hubungan_ibu)??'' }}" selected>
-                                {{ $data_maba->hubungan_ibu ? $data_maba->hubunganIbu->nama_hubungan : '---Pilih
-                                Status Hubungan---' }}
+                            <option value="{{ isset($data_maba->hubungan_ibu)?$data_maba->hubungan_ibu:'' }}"
+                                selected>
+                                {{ isset($data_maba->hubungan_ibu) ? $data_maba->hubunganibu->nama_hubungan :
+                                '---Pilih Status Hubungan---' }}
                             </option>
                             @foreach ($hubungan as $hub)
                             <option value="{{$hub->kode_status}}">{{$hub->nama_hubungan}}</option>
@@ -132,7 +134,9 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
-                            <option value="{{ isset($data_maba->ibu->kode_provinsi)??'' }}" selected>
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_provinsi)?$data_maba->ibu->kode_provinsi:'' }}"
+                                selected>
                                 {{ isset($data_maba->ibu->kode_provinsi) ? $data_maba->ibu->provinsi->nama_provinsi :
                                 "---Pilih Provinsi---" }}
                             </option>
@@ -144,9 +148,11 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            <option value="{{ isset($data_maba->ibu->kode_kabupaten)??'' }}" selected>
-                                {{ isset($data_maba->ibu->kode_kabupaten) ? $data_maba->ibu->kabupaten->nama_kabupaten :
-                                "---Pilih Kabupaten---" }}
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_kabupaten)? $data_maba->ibu->kode_kabupaten:'' }}"
+                                selected>
+                                {{ isset($data_maba->ibu->kode_kabupaten) ? $data_maba->ibu->kabupaten->nama_kabupaten
+                                : "---Pilih Kabupaten---" }}
                             </option>
                         </select>
                     </div>
@@ -155,9 +161,11 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option value="{{ isset($data_maba->ibu->kode_kecamatan)??'' }}" selected>
-                                {{ isset($data_maba->ibu->kode_kecamatan) ? $data_maba->ibu->kecamatan->nama_kecamatan :
-                                "---Pilih Kecamatan---" }}
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_kecamatan)?$data_maba->ibu->kode_kecamatan:'' }}"
+                                selected>
+                                {{ isset($data_maba->ibu->kode_kecamatan) ? $data_maba->ibu->kecamatan->nama_kecamatan
+                                : "---Pilih Kecamatan---" }}
                             </option>
                         </select>
                     </div>
@@ -180,7 +188,7 @@
     </div>
 </div>
 
-{{-- Pekerjaan dan Riwayat Pendidikan Ibu --}}
+{{-- Pekerjaan dan Riwayat Pendidikan ibu --}}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Pekerjaan dan Riwayat Pendidikan Ibu</h6>
@@ -194,7 +202,9 @@
                     <div class="form-group">
                         <label for="pendidikan">Pendidikan Terakhir</label>
                         <select name="pendidikan" id="pendidikan" class="form-control">
-                            <option value="{{ isset($data_maba->ibu->kode_pendidikan)??'' }}" selected>
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_pendidikan)?$data_maba->ibu->kode_pendidikan:'' }}"
+                                selected>
                                 {{ isset($data_maba->ibu->kode_pendidikan) ?
                                 $data_maba->ibu->pendidikanTerakhir->nama_pendidikan : "---Pendidikan Terkahir---" }}
                             </option>
@@ -206,9 +216,11 @@
                     <div class="form-group">
                         <label for="pekerjaan">Pekerjaan</label>
                         <select name="pekerjaan" id="pekerjaan" class="form-control">
-                            <option value="{{ isset($data_maba->ibu->kode_pekerjaan)??'' }}" selected>
-                                {{ isset($data_maba->ibu->kode_pekerjaan) ? $data_maba->ibu->pekerjaan->nama_pekerjaan :
-                                "---Pilih Pekerjaan---" }}
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_pekerjaan)?$data_maba->ibu->kode_pekerjaan:'' }}"
+                                selected>
+                                {{ isset($data_maba->ibu->kode_pekerjaan) ? $data_maba->ibu->pekerjaan->nama_pekerjaan
+                                : "---Pilih Pekerjaan---" }}
                             </option>
                             @foreach ($pekerjaan as $pkj)
                             <option value="{{$pkj->kode_pekerjaan}}">{{$pkj->nama_pekerjaan}}</option>
@@ -220,7 +232,9 @@
                     <div class="form-group">
                         <label for="penghasilan">Jumlah Penghasilan</label>
                         <select name="penghasilan" id="penghasilan" class="form-control">
-                            <option value="{{ isset($data_maba->ibu->kode_penghasilan)??'' }}" selected>
+                            <option
+                                value="{{ isset($data_maba->ibu->kode_penghasilan)?$data_maba->ibu->kode_penghasilan:'' }}"
+                                selected>
                                 {{ isset($data_maba->ibu->kode_penghasilan) ?
                                 $data_maba->ibu->jumlahPenghasilan->keterangan_penghasilan : "--- Jumlah Penghasilan
                                 ---" }}
@@ -231,7 +245,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nominal">Nominal Gaji Ibu</label>
+                        <label for="nominal">Nominal Gaji ibu</label>
                         <input type="number" name="nominal" class="form-control form-control-user" id="nominal"
                             value="{{($data_maba->ibu->nominal)??''}}">
                     </div>

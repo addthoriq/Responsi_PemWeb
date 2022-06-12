@@ -40,8 +40,8 @@
                     <div class="form-group">
                         <label for="agama">Agama</label>
                         <select name="agama" id="agama" class="form-control">
-                            <option value="{{ $data_maba->ayah->kode_agama??'' }}" selected>
-                                {{ $data_maba->ayah->kode_agama ? $data_maba->ayah->agama->nama_agama : "---Pilih Provinsi---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_agama)?$data_maba->ayah->kode_agama:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_agama) ? $data_maba->ayah->agama->nama_agama : "---Pilih Agama---" }}
                             </option>
                             @foreach ($agama as $ag)
                             <option value="{{$ag->kode_agama}}">{{$ag->nama_agama}}</option>
@@ -57,8 +57,8 @@
                     <div class="form-group">
                         <label for="hubungan_ayah">Status Hubungan</label>
                         <select name="hubungan_ayah" id="hubungan_ayah" class="form-control">
-                            <option value="{{ $data_maba->hubungan_ayah??'' }}" selected>
-                                {{ $data_maba->hubungan_ayah ? $data_maba->hubunganAyah->nama_hubungan : '---Pilih Status Hubungan---' }}
+                            <option value="{{ isset($data_maba->hubungan_ayah)?$data_maba->hubungan_ayah:'' }}" selected>
+                                {{ isset($data_maba->hubungan_ayah) ? $data_maba->hubunganAyah->nama_hubungan : '---Pilih Status Hubungan---' }}
                             </option>
                             @foreach ($hubungan as $hub)
                             <option value="{{$hub->kode_status}}">{{$hub->nama_hubungan}}</option>
@@ -129,8 +129,8 @@
                     <div class="form-group">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control select2">
-                            <option value="{{ $data_maba->ayah->kode_provinsi??'' }}" selected>
-                                {{ $data_maba->ayah->kode_provinsi ? $data_maba->ayah->provinsi->nama_provinsi : "---Pilih Provinsi---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_provinsi)?$data_maba->ayah->kode_provinsi:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_provinsi) ? $data_maba->ayah->provinsi->nama_provinsi : "---Pilih Provinsi---" }}
                             </option>
                             @foreach ($provinsi as $prov)
                             <option value="{{$prov->kode_provinsi}}">{{$prov->nama_provinsi}}</option>
@@ -140,8 +140,8 @@
                     <div class="form-group">
                         <label for="kabupaten">Kabupaten</label>
                         <select name="kabupaten" id="kabupaten" class="form-control select2">
-                            <option value="{{ $data_maba->ayah->kode_kabupaten??'' }}" selected>
-                                {{ $data_maba->ayah->kode_kabupaten ? $data_maba->ayah->kabupaten->nama_kabupaten : "---Pilih Kabupaten---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_kabupaten)? $data_maba->ayah->kode_kabupaten:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_kabupaten) ? $data_maba->ayah->kabupaten->nama_kabupaten : "---Pilih Kabupaten---" }}
                             </option>
                         </select>
                     </div>
@@ -150,8 +150,8 @@
                     <div class="form-group">
                         <label for="kecamatan">Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option value="{{ $data_maba->ayah->kode_kecamatan??'' }}" selected>
-                                {{ $data_maba->ayah->kode_kecamatan ? $data_maba->ayah->kecamatan->nama_kecamatan : "---Pilih Kecamatan---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_kecamatan)?$data_maba->ayah->kode_kecamatan:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_kecamatan) ? $data_maba->ayah->kecamatan->nama_kecamatan : "---Pilih Kecamatan---" }}
                             </option>
                         </select>
                     </div>
@@ -188,8 +188,8 @@
                     <div class="form-group">
                         <label for="pendidikan">Pendidikan Terakhir</label>
                         <select name="pendidikan" id="pendidikan" class="form-control">
-                            <option value="{{ $data_maba->ayah->kode_pendidikan??'' }}" selected>
-                                {{ $data_maba->ayah->kode_pendidikan ? $data_maba->ayah->pendidikanTerakhir->nama_pendidikan : "---Pendidikan Terkahir---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_pendidikan)?$data_maba->ayah->kode_pendidikan:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_pendidikan) ? $data_maba->ayah->pendidikanTerakhir->nama_pendidikan : "---Pendidikan Terkahir---" }}
                             </option>
                             @foreach ($pendidikan as $pdd)
                             <option value="{{$pdd->kode_pendidikan}}">{{$pdd->nama_pendidikan}}</option>
@@ -199,8 +199,8 @@
                     <div class="form-group">
                         <label for="pekerjaan">Pekerjaan</label>
                         <select name="pekerjaan" id="pekerjaan" class="form-control">
-                            <option value="{{ $data_maba->ayah->kode_pekerjaan??'' }}" selected>
-                                {{ $data_maba->ayah->kode_pekerjaan ? $data_maba->ayah->pekerjaan->nama_pekerjaan : "---Pilih Pekerjaan---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_pekerjaan)?$data_maba->ayah->kode_pekerjaan:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_pekerjaan) ? $data_maba->ayah->pekerjaan->nama_pekerjaan : "---Pilih Pekerjaan---" }}
                             </option>
                             @foreach ($pekerjaan as $pkj)
                             <option value="{{$pkj->kode_pekerjaan}}">{{$pkj->nama_pekerjaan}}</option>
@@ -212,8 +212,8 @@
                     <div class="form-group">
                         <label for="penghasilan">Jumlah Penghasilan</label>
                         <select name="penghasilan" id="penghasilan" class="form-control">
-                            <option value="{{ $data_maba->ayah->kode_penghasilan??'' }}" selected>
-                                {{ $data_maba->ayah->kode_penghasilan ? $data_maba->ayah->jumlahPenghasilan->keterangan_penghasilan : "--- Jumlah Penghasilan ---" }}
+                            <option value="{{ isset($data_maba->ayah->kode_penghasilan)?$data_maba->ayah->kode_penghasilan:'' }}" selected>
+                                {{ isset($data_maba->ayah->kode_penghasilan) ? $data_maba->ayah->jumlahPenghasilan->keterangan_penghasilan : "--- Jumlah Penghasilan ---" }}
                             </option>
                             @foreach ($penghasilan as $phsl)
                             <option value="{{$phsl->kode_penghasilan}}">{{$phsl->keterangan_penghasilan}}</option>

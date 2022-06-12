@@ -52,6 +52,18 @@ class IbuController extends Controller
                 'nik_ibu' => $request->nik,
                 'hubungan_ibu' => $request->hubungan_ibu
             ]);
+        } elseif ($data_maba->exists()) {
+            Ibu::create([
+                'nik' => $request->nik,
+                'nama_ibu' => $request->nama_ibu,
+                'kode_agama' => $request->agama,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_hp' => $request->nomor_hp,
+            ]);
+            $data_maba->first()->update([
+                'nik_ibu' => $request->nik,
+                'hubungan_ibu' => $request->hubungan_ibu
+            ]);
         } else {
             Ibu::where('nik', '=', $data_maba->first()->nik_ibu)->update([
                 'nik' => $request->nik,
